@@ -30,11 +30,6 @@
                     <i class="ni ni-fat-add"></i>
                 </div>
             </a>
-            <a href="">
-                <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow float-left">
-                    <i class="ni ni-single-copy-04"></i>
-                </div>
-            </a>
             <h3 class="mb-0 text-center text-white">
                 <span class="bg-gradient-green px-md-3 px-2 py-2">Daftar Mata Kuliah</span>
             </h3>
