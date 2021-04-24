@@ -83,7 +83,9 @@
                 </div>
             </div>
             @foreach ($matkul as $m)
-                <input type="hidden" name="dosen_id" value="{{$m->dosen->id}}">
+                @foreach ($dosen as $d)
+                    <input type="hidden" name="dosen_id" value="{{$m->dosen_id != $d->id ? '0': $m->dosen->id}}">
+                @endforeach
             @endforeach
             
             <div class="col-md-6">

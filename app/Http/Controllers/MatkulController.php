@@ -34,7 +34,7 @@ class MatkulController extends Controller
             'dosen_id' => $request->dosen_id,
             'sks' => $request->sks
         ]);
-
+        $request->session()->flash('add', 'Success! Mata Kuliah Added');
         return redirect()->route('IndexMatkul');
     }
     
@@ -52,12 +52,14 @@ class MatkulController extends Controller
             'dosen_id' => $request->dosen_id,
             'sks' => $request->sks
         ]);
+        $request->session()->flash('update', 'Success! Mata Kuliah Updated');
         return redirect()->route('IndexMatkul');
     }
 
     public function destroy($id)
     {
         $matkul = Matkul::where('id', $id)->delete();
+        $request->session()->flash('delete', 'Success! Mata Kuliah Deleted');
         return redirect()->route('IndexMatkul');
     }
 }

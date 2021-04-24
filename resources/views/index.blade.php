@@ -13,7 +13,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Mahasiswa</h5>
-                    <span class="h2 font-weight-bold mb-0">350,897</span>
+                    <span class="h2 font-weight-bold mb-0">{{$mahasiswa}}</span>
                   </div>
                   <div class="col-auto">
                     <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -31,7 +31,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Dosen</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                    <span class="h2 font-weight-bold mb-0">{{$dosen}}</span>
                   </div>
                   <div class="col-auto">
                     <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -49,7 +49,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Program Studi</h5>
-                    <span class="h2 font-weight-bold mb-0">924</span>
+                    <span class="h2 font-weight-bold mb-0">{{$prodi}}</span>
                   </div>
                   <div class="col-auto">
                     <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -67,7 +67,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Mata Kuliah</h5>
-                    <span class="h2 font-weight-bold mb-0">49,65%</span>
+                    <span class="h2 font-weight-bold mb-0">{{$matkul}}</span>
                   </div>
                   <div class="col-auto">
                     <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">

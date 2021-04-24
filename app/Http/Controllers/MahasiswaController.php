@@ -23,6 +23,7 @@ class MahasiswaController extends Controller
     }
     public function store(Request $request)
     {
+        
         $request->validate(array(
             'nim' => 'numeric|min:10|unique:mahasiswas',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

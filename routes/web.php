@@ -7,11 +7,10 @@ use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Str;
 
-Route::get('/', function () {
-    return view('index');
-})->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 // Route Mahasiswa
 Route::prefix('mahasiswa')->group(function () {
@@ -57,6 +56,7 @@ Route::prefix('jadwal')->group(function () {
     Route::get('/edit/{id}', [JadwalController::class, 'edit'])->name('EditJadwal');
     Route::post('/update/{id}', [JadwalController::class, 'update'])->name('jadwal.update');
     Route::get('/delete/{id}', [JadwalController::class, 'destroy'])->name('jadwal.delete');
+    Route::get('/cetak-pdf', [JadwalController::class, 'cetak'])->name('cetak.pdf');
 });
 // Route Profil
 Route::prefix('pengaturan')->group(function () {

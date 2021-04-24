@@ -82,6 +82,7 @@
                         {{"Tidak Ada Prodi"}}
                         @break
                     @endif
+                    {{-- {{$mahasiswa->prodi_id != $p->id ? 'Tidak ada Prodi': $mahasiswa->prodi->nama_prodi}} --}}
                   @endforeach
                 </td>
                 <td class="text-right">

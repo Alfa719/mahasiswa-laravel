@@ -4,6 +4,24 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
+      @if (session()->get('add'))
+          <div class="alert alert-success alert-block mb-0">
+            <button class="close" data-dismiss="alert"><small><strong>x</strong></small></button>
+            <strong>{{ session()->get('add') }}</strong>
+          </div>
+      @endif
+      @if (session()->get('update'))
+          <div class="alert alert-success alert-block mb-0">
+            <button class="close" data-dismiss="alert"><small><strong>x</strong></small></button>
+            <strong>{{ session()->get('update') }}</strong>
+          </div>
+      @endif
+      @if (session()->get('delete'))
+          <div class="alert alert-success alert-block mb-0">
+            <button class="close" data-dismiss="alert"><small><strong>x</strong></small></button>
+            <strong>{{ session()->get('delete') }}</strong>
+          </div>
+      @endif
       <div class="card bg-default shadow">
         <!-- Card header -->
         <div class="card-header bg-transparent border-0 ">
@@ -12,7 +30,7 @@
                     <i class="ni ni-fat-add"></i>
                 </div>
             </a>
-            <a href="">
+            <a href="{{route('cetak.pdf')}}">
                 <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow float-left">
                     <i class="ni ni-single-copy-04"></i>
                 </div>

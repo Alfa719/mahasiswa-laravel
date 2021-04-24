@@ -7,6 +7,7 @@ use App\Models\Dosen;
 use App\Models\Matkul;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use PDF;
 
 class JadwalController extends Controller
 {
@@ -48,7 +49,7 @@ class JadwalController extends Controller
             'dosen_id' => $request->dosen_id,
             'semester' => $request->semester
         ]);
-
+        $request->session()->flash('add', 'Success! Jadwal Added');
         return redirect()->route('IndexJadwal');
     }
 
@@ -75,6 +76,7 @@ class JadwalController extends Controller
             'dosen_id' => $dosen->dosen_id,
             'semester' => $request->semester
         ]);
+        $request->session()->flash('update', 'Success! Jadwal Updated');
         return redirect()->route('IndexJadwal');
     }
 
@@ -82,6 +84,14 @@ class JadwalController extends Controller
     public function destroy($id)
     {
         $jadwal = Jadwal::where('id', $id)->delete();
+        $request->session()->flash('delete', 'Success! Jadwal Deleted');
         return redirect()->route('IndexJadwal');
+    }
+    public function cetak()
+    {
+        $jadwal = Jadwal::all();
+        $dosen = Dosen::get();
+        $pdf = PDF::loadView('jadwal.print', ['jadwal' => $jadwal, 'dosen' => $dosen]);
+        return $pdf->download('print-jadwal.pdf');
     }
 }
