@@ -41,6 +41,7 @@ class ProdiController extends Controller
             'dosen_id' => $request->dosen_id,
             'logo' => $namaGambar
         ]);
+        $request->session()->flash('add', 'Success! Program Studi Added');
         return redirect()->route('IndexProdi');
     }
     public function edit($id)
@@ -63,12 +64,14 @@ class ProdiController extends Controller
             'dosen_id' => $request->dosen_id,
             'logo' => $namaGambar
         ]);
+        $request->session()->flash('update', 'Success! Program Studi Updated');
         return redirect()->route('IndexProdi');
     }
 
     public function destroy($id)
     {
         Prodi::where('id', $id)->delete();
+        $request->session()->flash('delete', 'Success! Program Studi Deleted');
         return redirect()->route('IndexProdi');
     }
 }

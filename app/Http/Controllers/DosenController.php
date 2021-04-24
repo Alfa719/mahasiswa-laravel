@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dosen;
 use Illuminate\Http\Request;
+use Session;
 
 class DosenController extends Controller
 {
@@ -36,6 +37,8 @@ class DosenController extends Controller
             'alamat' => $request->alamat,
             'gambar' => $namaGambar
         ]);
+        
+        $request->session()->flash('add', 'Success! Dosen Added');
         return redirect()->route('IndexDosen');
     }
 
@@ -62,12 +65,14 @@ class DosenController extends Controller
             'alamat' => $request->alamat,
             'gambar' => $namaGambar
         ]);
+        $request->session()->flash('update', 'Success! Dosen Updated');
         return redirect()->route('IndexDosen');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         Dosen::where('id', $id)->delete();
+        $request->session()->flash('delete', 'Success! Dosen Deleted');
         return redirect()->route('IndexDosen');
     }
 }

@@ -4,6 +4,24 @@
 @section('content')
     <div class="row">
         <div class="col">
+            @if (session()->get('add'))
+                <div class="alert alert-success alert-block mb-0">
+                    <button class="close" data-dismiss="alert"><small><strong>x</strong></small></button>
+                    <strong>{{ session()->get('add') }}</strong>
+                </div>
+            @endif
+            @if (session()->get('update'))
+                <div class="alert alert-success alert-block mb-0">
+                    <button class="close" data-dismiss="alert"><small><strong>x</strong></small></button>
+                    <strong>{{ session()->get('update') }}</strong>
+                </div>
+            @endif
+            @if (session()->get('delete'))
+                <div class="alert alert-success alert-block mb-0">
+                    <button class="close" data-dismiss="alert"><small><strong>x</strong></small></button>
+                    <strong>{{ session()->get('delete') }}</strong>
+                </div>
+            @endif
             <div class="card bg-default shadow">
                 <div class="card-header bg-transparent border-0">
                     <a href="{{route('TambahProdi')}}">
@@ -49,15 +67,16 @@
                         </td>
                         <td>
                             <div class="avatar-group">
-                                <a href="" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="{{$p->dosen->nama}}">
-                                    <img alt="None" src="{{asset('images')}}/dosen/{{$p->dosen->gambar}}">
+                                @foreach ($dosen as $d)
+                                <a href="" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="{{$p->dosen_id != $d->id ? 'Tidak ada dosen': $p->dosen->nama}}">
+                                    <img alt="None" src="{{asset('images')}}/dosen/{{$p->dosen_id != $d->id ? '': $p->dosen->gambar}}">
                                 </a>
+                                @endforeach
                             </div>
                         </td>
                         <td>
                         <div class="d-flex align-items-center">
                             @php
-                                
                                 $a = $mhs->where('prodi_id', $p->id)->count() / $total * 100;
                             @endphp
                             <span class="completion">

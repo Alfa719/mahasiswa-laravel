@@ -41,7 +41,9 @@
                 <td class="gambar">{{$m->kode}}</td>
                 <td class="budget">{{$m->nama_matkul}}</td>
                 <td class="status">
-                  {{$m->dosen->nama}}
+                  @foreach ($dosen as $d)
+                    {{$m->dosen_id != $d->id ? 'Tidak ada dosen': $m->dosen->nama}}
+                  @endforeach
                 </td>
                 <td class="sks">{{$m->sks}}</td>
                 <td class="text-right">

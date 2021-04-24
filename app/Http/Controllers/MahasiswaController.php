@@ -40,6 +40,7 @@ class MahasiswaController extends Controller
             'prodi_id' => $request->prodi,
             'gambar' => $namaGambar
         ]);
+        $request->session()->flash('add', 'Success! Mahasiswa Added');
         return redirect()->route('IndexMahasiswa');
     }
     public function edit($id)
@@ -66,12 +67,13 @@ class MahasiswaController extends Controller
             'prodi_id' => $request->prodi,
             'gambar' => $namaGambar
         ]);
-
+        $request->session()->flash('update', 'Success! Mahasiswa Updated');
         return redirect()->route('IndexMahasiswa');
     }
     public function delete($id)
     {
         Mahasiswa::where('id', $id)->delete();
+        $request->session()->flash('delete', 'Success! Mahasiswa Deleted');
         return redirect()->route('IndexMahasiswa');
     }
 }

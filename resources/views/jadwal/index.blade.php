@@ -44,7 +44,9 @@
                 <td class="gambar">{{$j->waktu_mulai}} - {{$j->waktu_selesai}}</td>
                 <td class="budget">{{$j->matkul->nama_matkul}}</td>
                 <td class="status">
-                  {{$j->dosen->nama}}
+                  @foreach ($dosen as $d)
+                    {{$j->dosen_id != $d->id ? 'Tidak ada dosen': $j->dosen->nama}}
+                  @endforeach
                 </td>
                 <td class="sks">{{$j->prodi->nama_prodi}}</td>
                 <td class="sks1">{{$j->semester}}</td>
