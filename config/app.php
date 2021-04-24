@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // File PDF
         Barryvdh\DomPDF\ServiceProvider::class,
+        // ConsoleTVs\Charts\ChartsServiceProvider::class,
     ],
 
     /*

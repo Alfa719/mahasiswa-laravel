@@ -12,10 +12,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $dosen = Dosen::count();
-        $matkul = Matkul::count();
-        $prodi = Prodi::count();
-        $mahasiswa = Mahasiswa::count();
+        $dosen = Dosen::all();
+        $matkul = Matkul::all();
+        $prodi = Prodi::all();
+        $mahasiswa = Mahasiswa::all();
         return view('index', [
             'dosen' => $dosen,
             'matkul' => $matkul,
