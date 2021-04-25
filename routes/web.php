@@ -10,19 +10,23 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Str;
 
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Auth::routes();
 
-// Route Mahasiswa
-Route::prefix('mahasiswa')->group(function () {
-    Route::get('/', [MahasiswaController::class, 'index'])->name('IndexMahasiswa');
-    Route::get('/insert', [MahasiswaController::class, 'show'])->name('TambahMahasiswa');
-    Route::post('/insert', [MahasiswaController::class, 'store']);
-    Route::get('/edit/{id}', [MahasiswaController::class, 'edit'])->name('EditMahasiswa');
-    Route::post('/update', [MahasiswaController::class, 'update']);
-    Route::get('/delete/{id}', [MahasiswaController::class, 'delete'])->name('DeleteMahasiswa');
+Route::middleware(['auth'])->get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::middleware(['auth'])->get('/logout', [DashboardController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth'])->prefix('mahasiswa')->group(function () {
+        Route::get('/', [MahasiswaController::class, 'index'])->name('IndexMahasiswa');
+        Route::get('/insert', [MahasiswaController::class, 'show'])->name('TambahMahasiswa');
+        Route::post('/insert', [MahasiswaController::class, 'store']);
+        Route::get('/edit/{id}', [MahasiswaController::class, 'edit'])->name('EditMahasiswa');
+        Route::post('/update', [MahasiswaController::class, 'update']);
+        Route::get('/delete/{id}', [MahasiswaController::class, 'delete'])->name('DeleteMahasiswa');
+    #code
 });
 // Route Dosen
-Route::prefix('dosen')->group(function () {
+Route::middleware(['auth'])->prefix('dosen')->group(function () {
     Route::get('/', [DosenController::class, 'index'])->name('IndexDosen');
     Route::get('/insert', [DosenController::class, 'create'])->name('TambahDosen');
     Route::post('/insert', [DosenController::class, 'store']);
@@ -31,7 +35,7 @@ Route::prefix('dosen')->group(function () {
     Route::get('/delete/{id}', [DosenController::class, 'destroy'])->name('DeleteDosen');
 });
 // Route Prodi
-Route::prefix('prodi')->group(function () {
+Route::middleware(['auth'])->prefix('prodi')->group(function () {
     Route::get('/', [ProdiController::class, 'index'])->name('IndexProdi');
     Route::get('/insert', [ProdiController::class, 'create'])->name('TambahProdi');
     Route::post('/insert', [ProdiController::class, 'store']);
@@ -40,7 +44,7 @@ Route::prefix('prodi')->group(function () {
     Route::get('/delete/{id}', [ProdiController::class, 'destroy'])->name('DeleteProdi');
 });
 // Route Mata Kuliah
-Route::prefix('matkul')->group(function () {
+Route::middleware(['auth'])->prefix('matkul')->group(function () {
     Route::get('/', [MatkulController::class, 'index'])->name('IndexMatkul');
     Route::get('/insert', [MatkulController::class, 'create'])->name('TambahMatkul');
     Route::post('/insert', [MatkulController::class, 'store']);
@@ -49,7 +53,7 @@ Route::prefix('matkul')->group(function () {
     Route::get('/delete/{id}', [MatkulController::class, 'destroy'])->name('DeleteMatkul');
 });
 // Route Jadwal
-Route::prefix('jadwal')->group(function () {
+Route::middleware(['auth'])->prefix('jadwal')->group(function () {
     Route::get('/', [JadwalController::class, 'index'])->name('IndexJadwal');
     Route::get('/insert', [JadwalController::class, 'create'])->name('TambahJadwal');
     Route::post('/insert', [JadwalController::class, 'store']);
@@ -59,16 +63,13 @@ Route::prefix('jadwal')->group(function () {
     Route::get('/cetak-pdf', [JadwalController::class, 'cetak'])->name('cetak.pdf');
 });
 // Route Profil
-Route::prefix('pengaturan')->group(function () {
+Route::middleware(['auth'])->prefix('pengaturan')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('PengaturanProfil');
 });
-
 // Route::get('/coba', function () {
 //     $testString = '01.23456789';
 //     // 56789
 //     $test = Str::substr($testString, -8);
 //     return number_format((float)$testString, 2, '.', '');
 // });
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
