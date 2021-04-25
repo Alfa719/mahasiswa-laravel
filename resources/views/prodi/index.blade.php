@@ -68,9 +68,17 @@
                         <td>
                             <div class="avatar-group">
                                 @foreach ($dosen as $d)
-                                <a href="" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="{{$p->dosen_id != $d->id ? 'Tidak ada dosen': $p->dosen->nama}}">
-                                    <img alt="None" src="{{asset('images')}}/dosen/{{$p->dosen_id != $d->id ? '': $p->dosen->gambar}}">
+                                @if ($p->dosen_id == $d->id)
+                                    @php
+                                        $a = $p->dosen->nama;
+                                        $b = $p->dosen->gambar
+                                    @endphp
+                                    
+                                <a href="" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="{{$a}}">
+                                    <img alt="None" src="{{asset('images')}}/dosen/{{$b}}">
                                 </a>
+                                @break
+                                @endif
                                 @endforeach
                             </div>
                         </td>

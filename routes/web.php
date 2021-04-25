@@ -69,3 +69,6 @@ Route::prefix('pengaturan')->group(function () {
 //     $test = Str::substr($testString, -8);
 //     return number_format((float)$testString, 2, '.', '');
 // });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

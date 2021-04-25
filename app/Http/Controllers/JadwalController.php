@@ -16,7 +16,12 @@ class JadwalController extends Controller
     {
         $jadwal = Jadwal::simplePaginate(5);
         $dosen = Dosen::get();
-        return view('jadwal.index', ['jadwal' => $jadwal, 'dosen' => $dosen]);
+        $prodi = Prodi::get();
+        return view('jadwal.index', [
+            'jadwal' => $jadwal, 
+            'dosen' => $dosen,
+            'prodi' => $prodi
+        ]);
     }
 
     
@@ -73,7 +78,7 @@ class JadwalController extends Controller
             'hari' => $request->hari,
             'matkul_id' => $request->matkul_id,
             'prodi_id' => $request->prodi_id,
-            'dosen_id' => $dosen->dosen_id,
+            'dosen_id' => $dosen,
             'semester' => $request->semester
         ]);
         $request->session()->flash('update', 'Success! Jadwal Updated');
@@ -81,7 +86,7 @@ class JadwalController extends Controller
     }
 
     
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $jadwal = Jadwal::where('id', $id)->delete();
         $request->session()->flash('delete', 'Success! Jadwal Deleted');

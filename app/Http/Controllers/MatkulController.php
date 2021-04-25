@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Matkul;
 use App\Models\Dosen;
+use App\Models\Jadwal;
 
 class MatkulController extends Controller
 {
@@ -52,11 +53,14 @@ class MatkulController extends Controller
             'dosen_id' => $request->dosen_id,
             'sks' => $request->sks
         ]);
+        Jadwal::where('matkul_id', $id)->update([
+            'dosen_id' => $request->dosen_id
+        ]);
         $request->session()->flash('update', 'Success! Mata Kuliah Updated');
         return redirect()->route('IndexMatkul');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $matkul = Matkul::where('id', $id)->delete();
         $request->session()->flash('delete', 'Success! Mata Kuliah Deleted');

@@ -55,7 +55,10 @@
                 <td class="budget">{{$m->nama_matkul}}</td>
                 <td class="status">
                   @foreach ($dosen as $d)
-                    {{$m->dosen_id != $d->id ? 'Tidak ada dosen': $m->dosen->nama}}
+                    @if ($m->dosen_id == $d->id)
+                        {{$m->dosen->nama}}
+                        @break
+                    @endif
                   @endforeach
                 </td>
                 <td class="sks">{{$m->sks}}</td>

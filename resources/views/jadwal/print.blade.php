@@ -21,7 +21,6 @@
       <th scope="col" class="sort" data-sort="status">Dosen</th>
       <th scope="col" class="sort" data-sort="sks">Program Studi</th>
       <th scope="col" class="sort" data-sort="sks1">Semester</th>
-      <th scope="col"></th>
     </tr>
   </thead>
   <tbody class="list">
@@ -33,22 +32,14 @@
       <td class="budget">{{$j->matkul->nama_matkul}}</td>
       <td class="status">
         @foreach ($dosen as $d)
-          {{$j->dosen_id != $d->id ? 'Tidak ada dosen': $j->dosen->nama}}
+        @if ($j->dosen_id == $d->id)
+            {{$j->dosen->nama}}
+            @break
+        @endif
         @endforeach
       </td>
       <td class="sks">{{$j->prodi->nama_prodi}}</td>
       <td class="sks1">{{$j->semester}}</td>
-      <td class="text-right">
-        <div class="dropdown">
-          <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-ellipsis-v"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-gradient-red">
-            <a class="dropdown-item text-light font-weight-bold" href="{{url('jadwal/edit')}}/{{$j->id}}">Edit</a>
-            <a class="dropdown-item text-light font-weight-bold" href="{{url('jadwal/delete')}}/{{$j->id}}">Delete</a>
-          </div>
-        </div>
-      </td>
     </tr>
     @endforeach
   </tbody>

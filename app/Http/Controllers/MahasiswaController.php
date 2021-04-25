@@ -71,7 +71,7 @@ class MahasiswaController extends Controller
         $request->session()->flash('update', 'Success! Mahasiswa Updated');
         return redirect()->route('IndexMahasiswa');
     }
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
         Mahasiswa::where('id', $id)->delete();
         $request->session()->flash('delete', 'Success! Mahasiswa Deleted');

@@ -68,7 +68,7 @@ class ProdiController extends Controller
         return redirect()->route('IndexProdi');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         Prodi::where('id', $id)->delete();
         $request->session()->flash('delete', 'Success! Program Studi Deleted');
